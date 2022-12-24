@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import { Input, Button } from 'antd';
+import { connect } from "react-redux";
+import userLogin from '../Redux/action/authAction';
 
-export const Login = () => {
-    debugger;
+
+const Login = ({loginRequest}) => {
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     console.log("Entered Inside")
@@ -10,7 +12,17 @@ export const Login = () => {
         <div>
             <Input placeholder="user name" onChange={(e) => setUserName(e.target.value)} />
             <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
-            <Button onClick={() => console.log(userName, password)}>Login</Button>
+            <Button onClick={() => loginRequest({userName, password})}>Login</Button>
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    loginRequest: (payload) => dispatch(userLogin(payload))
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

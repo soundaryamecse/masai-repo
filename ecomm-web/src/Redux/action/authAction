@@ -20,7 +20,8 @@ export const userLoginRequest = () => ({
       type: LOGOUT
   })
 
-  export const userLogin = (payload) => (dispatch) => {   
+export const userLogin = (payload) => (dispatch) => { 
+    console.log("Entered in dispatch userLogin")  
     dispatch(userLoginRequest())
     return  axios.get("https://reqres.in/api/login",{
       params:{
